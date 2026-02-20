@@ -60,6 +60,10 @@ Steam版で動作確認を行っていますが、キャプチャーボード等
 pip install opencv-python numpy mss PyQt6 pywin32 pynput
 ```
 
+## ゲーム設定
+- Steam版 ドラゴンクエストVII Reimagined
+  borderless WQHD
+
 ---
 
 ## ファイル配置
@@ -68,11 +72,11 @@ pip install opencv-python numpy mss PyQt6 pywin32 pynput
 
 - `dq7_lucky_panel_realtime.py`（本体）
 - `perspective.json`（透視4点。`Alt+p`で自動生成）
-- テンプレ画像（任意/推奨）
-  - `back_template.png`（裏面検出用。推奨）
-  - `start_template.png`（START検出用。任意）
-  - `stop_template.png`（STOP検出用。任意）
-  - `end_template.png`（未使用。定数として残っています）
+- テンプレ画像
+  - `back_template.png`（裏面検出用）
+  - `start_template.png`（ラッキーパネル開始検出用）
+  - `stop_template.png`（シャッフル終了検出用）
+  - `end_template.png`（盤面完了検出用）
 
 > テンプレは「そのままのスクリーンショット」から切り出した画像を推奨します（解像度/スケールが合っているほど安定）。
 
@@ -93,6 +97,7 @@ python dq7_lucky_panel_realtime.py
 ### 2) 自動セットアップ
 - 環境にあったtemplate画像があると、自動でグリッド推定 → Trackingが始まります。  
   シャッフルが終わるとTrackingが終わりオーバーレイが表示されます。
+  ラッキーパネルをクリア（難易度単位）するとオーバーレイが非表示になります。
 
 - グリッド推定が開始されない、もしくは緑枠の範囲がずれている場合は**Alt + a**で手動実行ができます。
 
@@ -145,7 +150,7 @@ python dq7_lucky_panel_realtime.py
 ## よくあるトラブルシューティング
 
 ### ROIがうまく取れない
-- Alt+r を何回か
+- Alt+aもしくはAlt+r を何回か
 - それでもダメなら `selectROI` で手動選択
 - 窓の縁や影が入りすぎる場合は、ゲーム画面の表示倍率/フルスクリーン設定も影響します
 
